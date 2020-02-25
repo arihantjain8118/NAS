@@ -1,0 +1,20 @@
+Metadata-Version: 1.1
+Name: django-bourbon
+Version: 3.1.8
+Summary: Bourbon (http://bourbon.io/) static files packaged in a django app to speed up new applications and deployment.
+Home-page: https://github.com/benbacardi/django-bourbon
+Author: Ben Cardy
+Author-email: benbacardi@gmail.com
+License: MIT
+Description: UNKNOWN
+Keywords: django,sass,bourbon,staticfiles
+Platform: any
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
+Classifier: Intended Audience :: Developers
+Classifier: Natural Language :: English
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Topic :: Utilities
