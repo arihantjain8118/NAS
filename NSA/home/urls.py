@@ -15,9 +15,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf.urls import url
+
+
 from . import views
 
+
 urlpatterns = [
-    path('',views.index,name='home'),
+    path('',views.loginregisterpage,name='home'),
+    path('register/',views.register,name='register'),
+    path('login/',views.loginuser,name='login'),
+    path('logout/',views.logoutuser,name='logout'),
     path('jaiho/',views.index,name='jai ho'),
+    url(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
+        views.activate, name='activate'),
 ]

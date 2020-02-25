@@ -18,7 +18,7 @@
 </head>
 <body>
         <div class="form">
-      
+         
                 <ul class="tab-group">
                   <li class="tab active"><a href="#signup"><b>Sign Up</b></a></li>
                   <li class="tab"><a href="#login"><b>Log In</b></a></li>
@@ -28,21 +28,21 @@
                   <div id="signup">   
                     <h1>Sign Up for Free</h1>
                     
-                    <form action="/" method="post">
-                    
+                    <form action="register/" method="post">
+                      {% csrf_token %}
                     <div class="top-row">
                       <div class="field-wrap">
                         <label>
                           First Name<span class="req">*</span>
                         </label>
-                        <input type="text" required autocomplete="off" />
+                        <input type="text" name=first_name id=first_name required autocomplete="off" />
                       </div>
                   
                       <div class="field-wrap">
                         <label>
                           Last Name<span class="req">*</span>
                         </label>
-                        <input type="text"required autocomplete="off"/>
+                        <input type="text"required name=last_name id=last_name autocomplete="off"/>
                       </div>
                     </div>
           
@@ -50,14 +50,14 @@
                       <label>
                         Email Address<span class="req">*</span>
                       </label>
-                      <input type="email"required autocomplete="off"/>
+                      <input type="email"required  name=email id=email autocomplete="off"/>
                     </div>
                     
                     <div class="field-wrap">
                       <label>
                         Set A Password<span class="req">*</span>
                       </label>
-                      <input type="password"required autocomplete="off"/>
+                      <input type="password"name=password id=password required autocomplete="off"/>
                     </div>
                     
                     <button type="submit" class="button button-block"/>Get Started</button>
@@ -69,20 +69,20 @@
                   <div id="login">   
                     <h1>Welcome Back!</h1>
                     
-                    <form action="/" method="post">
-                    
+                    <form action="login/" method="post">
+                      {% csrf_token %}
                       <div class="field-wrap">
                       <label>
                         Email Address<span class="req">*</span>
                       </label>
-                      <input type="email"required autocomplete="off"/>
+                      <input type="email" name=username id=username required autocomplete="off"/>
                     </div>
                     
                     <div class="field-wrap">
                       <label>
                         Password<span class="req">*</span>
                       </label>
-                      <input type="password"required autocomplete="off"/>
+                      <input type="password" name=password id=password required autocomplete="off"/>
                     </div>
                     
                     <p class="forgot"><a href="#">Forgot Password?</a></p>
