@@ -26,7 +26,7 @@
                 
                 <div class="tab-content">
                   <div id="signup">   
-                    <h1>Sign Up for Free</h1>
+                    <h1>Sign Up</h1>
                     
                     <form action="register/" method="post">
                       {% csrf_token %}
@@ -52,7 +52,14 @@
                       </label>
                       <input type="email"required  name=email id=email autocomplete="off"/>
                     </div>
-                    
+
+                    <div class="field-wrap">
+                      <label>
+                        Username<span class="req">*</span>
+                      </label>
+                      <input type="text"required  name=username id=username autocomplete="off"/>
+                    </div>   
+
                     <div class="field-wrap">
                       <label>
                         Set A Password<span class="req">*</span>
@@ -73,9 +80,9 @@
                       {% csrf_token %}
                       <div class="field-wrap">
                       <label>
-                        Email Address<span class="req">*</span>
+                        Email Address or Username <span class="req">*</span>
                       </label>
-                      <input type="email" name=username id=username required autocomplete="off"/>
+                      <input type="text" name=username id=username required autocomplete="off"/>
                     </div>
                     
                     <div class="field-wrap">

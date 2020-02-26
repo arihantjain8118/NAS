@@ -4,6 +4,9 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login as auth_login
 from django.shortcuts import redirect
+from django.shortcuts import render_to_response
+from django.template.loader import render_to_string
+
 
 from django.http import HttpResponse
 from django.contrib.sites.shortcuts import get_current_site
@@ -29,11 +32,11 @@ def register(request):
     first_name=request.POST["first_name"]
     last_name=request.POST["last_name"]
     email=request.POST["email"]
-    username=email
+    username=request.POST["username"]
     password=request.POST["password"]
 
-    # if User.objects.filter(username=username).exists():
-	#     return HttpResponse('Username not available')
+    if User.objects.filter(username=username).exists():
+	    return HttpResponse('Username not available')
 
     user = User.objects.create_user(username=username,email=email,password=password,first_name=first_name,last_name=last_name)
     user.is_active = False
@@ -59,16 +62,39 @@ def loginuser(request):
     username = request.POST["username"]
     password = request.POST["password"]
     user = authenticate(request, username=username, password=password)
+    print(user)
     print("dvjbhv")
 
 
 	# if user is not  None and profile.is_member is True :
     if user is not None:
         login(request,user)
+        print(user)
         print("kdsha")
-        return render_to_response("home/welcome.html", {'user', user})
+        ctx={'user':user}
+        return render_to_response("home/welcome.html",ctx)
+        # return redirect('/')
+
 
     else:
+        print("jojo")
+        print(user)
+        # user1= User.objects.get(email = username)
+        # username = user1.username
+        try:
+            user1 = User.objects.get(email=username)
+        except User.DoesNotExist:
+            user1 = None
+        print(username)
+        print("bhai")
+       
+        if user1 is not None:
+            username=user1.username
+            user = authenticate(request, username=username, password=password)
+            login(request,user)
+            print("jojo")
+            # return redirect('/')
+            return render_to_response("home/welcome.html", {'user', user})
         return HttpResponse('Sorry you are not a member')
 		# Return an 'invalid login' error message.
 
