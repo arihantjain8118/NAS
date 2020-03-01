@@ -4,5 +4,14 @@
 </head>
 <body>
     <p>logged in {{user.first_name}}</p>
+    <p>updated</p>
+    
+    {% for new,des,i in mylist%}
+    <img src= "{{ i }}">
+       <p> {{new}} </p>
+       <br>
+       <br>
+       <br>
+    {% endfor %}
 </body>
 </html>

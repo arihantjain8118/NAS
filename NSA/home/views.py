@@ -16,7 +16,7 @@ from django.template.loader import render_to_string
 from .tokens import account_activation_token
 from django.contrib.auth.models import User
 from django.core.mail import EmailMessage
-
+from newsapi import NewsApiClient
 
 
 
@@ -25,7 +25,33 @@ from django.core.mail import EmailMessage
 from django.http import HttpResponse
 
 def index(request):
-    return render(request,'home/index.html')
+    if request.user.is_authenticated :
+        print("bhai")
+        ctx={'user':request.user}
+        newsapi = NewsApiClient(api_key='c50d354b35af4b638057c101ab8d941f')
+        top_headlines = newsapi.get_top_headlines(q='bitcoin',
+                                          sources='bbc-news,the-verge',
+                                          category='business',
+                                          language='en',
+                                          country='us')
+        articles = top_headlines['articles']   
+
+        desc = []
+        news = []
+        img = []
+        for i in range(len(articles)):
+            myarticles = articles[i]
+            news.append(myarticles['title'])
+            desc.append(myarticles['description'])
+            img.append(myarticles['urlToImage'])   
+            print("kjggyftffrrrrdrdrdrdr")
+        mylist = zip(news,desc,img)                             
+        ctx={'user':request.user,'mylist':mylist}
+        print(top_headlines)
+
+        return render_to_response("home/welcome.html",ctx)
+    else:
+        return render(request,'home/index.html')
 
 def register(request):
     print("AYYYYAAA")
@@ -72,8 +98,8 @@ def loginuser(request):
         print(user)
         print("kdsha")
         ctx={'user':user}
-        return render_to_response("home/welcome.html",ctx)
-        # return redirect('/')
+        # return render_to_response("home/welcome.html",ctx)
+        return redirect('/')
 
 
     else:
@@ -93,15 +119,36 @@ def loginuser(request):
             user = authenticate(request, username=username, password=password)
             login(request,user)
             print("jojo")
-            # return redirect('/')
-            return render_to_response("home/welcome.html", {'user', user})
+            return redirect('/')
+            # return render_to_response("home/welcome.html", {'user', user})
         return HttpResponse('Sorry you are not a member')
 		# Return an 'invalid login' error message.
 
 
 def loginregisterpage(request):
     if request.user.is_authenticated:
-        return render(request,'home/welcome.html')
+        print("bhai")
+        # ctx={'user':request.user}
+        newsapi = NewsApiClient(api_key='c50d354b35af4b638057c101ab8d941f')
+        top_headlines = newsapi.get_top_headlines(sources='bbc-news')
+        articles = top_headlines['articles']   
+
+        desc = []
+        news = []
+        img = []
+        for i in range(len(articles)):
+            myarticles = articles[i]
+            news.append(myarticles['title'])
+            desc.append(myarticles['description'])
+            img.append(myarticles['urlToImage'])   
+            print("kjggyftffrrrrdrdrdrdr")
+        mylist = zip(news,desc,img)                             
+        ctx={'user':request.user,'mylist':mylist}
+        print(top_headlines)
+
+        return render_to_response("home/welcome.html",ctx)
+   
+        # return render(request,'home/welcome.html')
     else:
         return render(request,'home/index.html')
 
