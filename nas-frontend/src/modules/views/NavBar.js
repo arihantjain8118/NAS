@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import { withStyles } from '@material-ui/core/styles';
 import Link from '@material-ui/core/Link';
 import AppBar from '../components/AppBar';
 import Toolbar, { styles as toolbarStyles } from '../components/ToolBar';
+import HomeNavbar from '../components/HomeNavbar';
+import UserNavbar from '../components/UserNavbar';
 
 const styles = theme => ({
   title: {
@@ -36,8 +37,7 @@ const styles = theme => ({
 });
 
 function NavBar(props) {
-  const { classes } = props;
-
+  const { classes, Pos } = props;
   return (
     <div>
       <AppBar position="fixed">
@@ -53,23 +53,13 @@ function NavBar(props) {
             {'Cover World'}
           </Link>
           <div className={classes.right}>
-            <Link
-              color="inherit"
-              variant="h6"
-              underline="none"
-              className={classes.rightLink}
-              href="/coverWorld/sign-in/"
-            >
-              {'Sign In'}
-            </Link>
-            <Link
-              variant="h6"
-              underline="none"
-              className={clsx(classes.rightLink, classes.linkSecondary)}
-              href="/coverWorld/sign-up/"
-            >
-              {'Sign Up'}
-            </Link>
+            {
+              Pos == 'home'?(
+                <HomeNavbar RightLink = {classes.rightLink} LinkSecondary = {classes.linkSecondary} />
+              ) : (
+                <UserNavbar RightLink = {classes.rightLink} LinkSecondary = {classes.linkSecondary} />
+              )
+            }
           </div>
         </Toolbar>
       </AppBar>
