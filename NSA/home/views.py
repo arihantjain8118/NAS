@@ -18,11 +18,16 @@ from django.contrib.auth.models import User
 from django.core.mail import EmailMessage
 from newsapi import NewsApiClient
 
-
+from rest_framework import viewsets          # add this
+from .serializers import UserSerializer
 
 # Create your views here.
 
 from django.http import HttpResponse
+
+class UserView(viewsets.ModelViewSet):
+    serializer_class = UserSerializer
+    queryset = User.objects.all()
 
 def index(request):
     if request.user.is_authenticated :

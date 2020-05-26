@@ -16,10 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls import url
-
+from rest_framework import routers    
 
 from . import views
 
+router = routers.DefaultRouter()                      # add this
+router.register(r'users', views.UserView, 'user')
 
 urlpatterns = [
     path('',views.loginregisterpage,name='home'),
@@ -29,4 +31,5 @@ urlpatterns = [
     path('jaiho/',views.index,name='jai ho'),
     url(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
         views.activate, name='activate'),
+    path('api/', include(router.urls))                # add this
 ]
