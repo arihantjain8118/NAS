@@ -41,8 +41,22 @@ function SignIn() {
     return errors;
   };
 
-  const handleSubmit = () => {
-    setSent(true);
+  const handleSubmit = (values) => {
+      fetch('https://localhost:3000/login',{
+        method: 'post',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+          email: values.email,
+          password: values.password
+        })
+      })
+        .then(response => response.json())
+        .then(data => {
+          console.log(data)
+          if(data.id){
+            setSent(true);
+          }
+      })
   };
 
   return (
