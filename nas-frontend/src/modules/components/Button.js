@@ -6,6 +6,7 @@ export default withStyles(theme => ({
     borderRadius: 0,
     fontWeight: theme.typography.fontWeightMedium,
     fontFamily: theme.typography.fontFamilySecondary,
+    marginTop: 10,
     padding: theme.spacing(2, 4),
     fontSize: theme.typography.pxToRem(14),
     boxShadow: 'none',

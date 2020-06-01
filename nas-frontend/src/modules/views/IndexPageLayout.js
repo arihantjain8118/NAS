@@ -11,7 +11,7 @@ const styles = theme => ({
     display: 'flex',
     alignItems: 'center',
     [theme.breakpoints.up('sm')]: {
-      height: '80vh',
+      height: '90vh',
       minHeight: 500,
       maxHeight: 1300,
     },
@@ -55,12 +55,12 @@ function IndexPageLayout(props) {
   return (
     <section className={classes.root}>
       <Container className={classes.container}>
-        <img
+        {/* <img
           src="/static/themes/onepirate/productHeroWonder.png"
           alt="wonder"
           width="147"
           height="80"
-        />
+        /> */}
         {children}
         <div className={classes.backdrop} />
         <div className={clsx(classes.background, backgroundClassName)} />

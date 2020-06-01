@@ -6,7 +6,7 @@ import MuiTypography from '@material-ui/core/Typography';
 
 const styles = theme => ({
   markedH2Center: {
-    height: 4,
+    height: 8,
     width: 73,
     display: 'block',
     margin: `${theme.spacing(1)}px auto 0`,

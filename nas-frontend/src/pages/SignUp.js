@@ -1,5 +1,5 @@
 import withRoot from '../modules/withRoot';
-import React from 'react';
+import React, {useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Link from '@material-ui/core/Link';
@@ -27,8 +27,8 @@ const useStyles = makeStyles(theme => ({
 
 function SignUp() {
   const classes = useStyles();
-  const [sent, setSent] = React.useState(false);
-
+  const [sent, setSent] = useState(false);
+  const [pos, ] = useState('home');
   const validate = values => {
     const errors = required(['firstName', 'lastName', 'email', 'password'], values);
 
@@ -48,14 +48,14 @@ function SignUp() {
 
   return (
     <React.Fragment>
-      <NavBar />
+      <NavBar Pos={pos}/>
       <AppForm>
         <React.Fragment>
           <Typography variant="h3" gutterBottom marked="center" align="center">
             Sign Up
           </Typography>
           <Typography variant="body2" align="center">
-            <Link href="/premium-themes/onepirate/sign-in/" underline="always">
+            <Link href="/coverWorld/sign-in/" underline="always">
               Already have an account?
             </Link>
           </Typography>

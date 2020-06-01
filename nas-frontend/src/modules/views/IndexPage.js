@@ -6,7 +6,7 @@ import Typography from '../components/Typography';
 import IndexPageLayout from './IndexPageLayout.js';
 
 const backgroundImage =
-  'https://www.brodynt.com/wp-content/uploads/2016/08/2e1ax_origami_entry_monitoring-locations.jpg';
+  'https://mir-s3-cdn-cf.behance.net/project_modules/1400_opt_1/12394291892497.5e5695c0dd1eb.jpg';
 
 const styles = theme => ({
   background: {
@@ -48,7 +48,7 @@ function IndexPage(props) {
       >
         Register
       </Button>
-      <Typography variant="body2" color="inherit" className={classes.more}>
+      <Typography variant="body1" color="inherit" className={classes.more}>
         Discover the experience
       </Typography>
     </IndexPageLayout>

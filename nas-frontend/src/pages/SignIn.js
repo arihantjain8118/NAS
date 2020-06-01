@@ -1,5 +1,5 @@
 import withRoot from '../modules/withRoot';
-import React from 'react';
+import React, {useState} from 'react';
 import { Field, Form, FormSpy } from 'react-final-form';
 import { makeStyles } from '@material-ui/core/styles';
 import Link from '@material-ui/core/Link';
@@ -10,6 +10,8 @@ import { email, required } from '../modules/form/validation';
 import RFTextField from '../modules/form/RFTextField';
 import FormButton from '../modules/form/FormButton';
 import FormFeedback from '../modules/form/FormFeedback';
+
+import {withRouter} from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
   form: {
@@ -26,8 +28,8 @@ const useStyles = makeStyles(theme => ({
 
 function SignIn() {
   const classes = useStyles();
-  const [sent, setSent] = React.useState(false);
-
+  const [sent, setSent] = useState(false);
+  const [pos, ] = useState('home');
   const validate = values => {
     const errors = required(['email', 'password'], values);
 
@@ -42,6 +44,7 @@ function SignIn() {
   };
 
   const handleSubmit = (values) => {
+    this.props.history.replace('/coverWorld/dashboard');
       fetch('https://localhost:3000/login',{
         method: 'post',
         headers: {'Content-Type': 'application/json'},
@@ -61,7 +64,7 @@ function SignIn() {
 
   return (
     <React.Fragment>
-      <NavBar />
+      <NavBar Pos={pos}/>
       <AppForm>
         <React.Fragment>
           <Typography variant="h3" gutterBottom marked="center" align="center">
@@ -69,7 +72,7 @@ function SignIn() {
           </Typography>
           <Typography variant="body2" align="center">
             {'Not a member yet? '}
-            <Link href="/premium-themes/onepirate/sign-up/" align="center" underline="always">
+            <Link href="/coverWorld/sign-up/" align="center" underline="always">
               Sign Up here
             </Link>
           </Typography>
@@ -111,11 +114,13 @@ function SignIn() {
                 }
               </FormSpy>
               <FormButton
+                href= "/coverWorld/dashboard/"
                 className={classes.button}
                 disabled={submitting || sent}
                 size="large"
                 color="secondary"
                 fullWidth
+                
               >
                 {submitting || sent ? 'In progress…' : 'Sign In'}
               </FormButton>
@@ -132,4 +137,4 @@ function SignIn() {
   );
 }
 
-export default withRoot(SignIn);
+export default withRouter(withRoot(SignIn));
