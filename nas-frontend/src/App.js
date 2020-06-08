@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import UserDashboard from './pages/UserDashboard';
+import NewsArticle from './pages/NewsArticle';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route exact path = '/coverWorld/sign-in' component = {SignIn} />
           <Route exact path = '/coverWorld/sign-up' component = {SignUp} />
           <Route exact path = '/coverWorld/dashboard' component = {UserDashboard} />
+          <Route exact path = '/coverWorld/article' component = {NewsArticle} />
         </Switch>
       </BrowserRouter>
     </div>

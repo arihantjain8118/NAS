@@ -1,3 +1,5 @@
+import { TextareaAutosize } from "@material-ui/core";
+
 const cardImagesStyles = {
     cardImgTop: {
       width: "100%",
@@ -11,6 +13,9 @@ const cardImagesStyles = {
     },
     button: {
       minWidth: 200,
+      marginLeft: '50px',
+      marginRight: 'auto',
+      bottom: '30px'
     },
     cardImgOverlay: {
       position: "absolute",
